@@ -53,7 +53,8 @@
               >
             </div>
             <h2 class="card-title text-2xl">
-              Donate for Flood at Noakhali, Bangladesh
+              Donate
+              <span class="title">for Flood at Noakhali, Bangladesh</span>
             </h2>
             <p class="text-justify">
               The recent floods in Noakhali have caused significant damage to
@@ -88,7 +89,8 @@
               >
             </div>
             <h2 class="card-title text-2xl">
-              Donate for Flood Relief in Feni,Bangladesh
+              Donate
+              <span class="title">for Flood Relief in Feni,Bangladesh</span>
             </h2>
             <p class="text-justify">
               The recent floods in Feni have devastated local communities,
@@ -125,7 +127,7 @@
               >
             </div>
             <h2 class="card-title text-2xl">
-              Aid for Injured in the Quota Movement
+              Aid <span class="title">for Injured in the Quota Movement</span>
             </h2>
             <p class="text-justify">
               The recent Quota movement has resulted in numerous injuries and
@@ -151,7 +153,7 @@
         </div>
       </div>
     </section>
-
+    <!-- Modal for error -->
     <dialog id="my_modal_3" class="modal">
       <div class="modal-box">
         <form method="dialog">
@@ -166,47 +168,22 @@
       </div>
     </dialog>
     <!-- History Section -->
-    <section class="historyCards"></section>
+    <section class="historyCards">
+      <div id="historyCards" class="w-[80%] mx-auto flex flex-col gap-6">
+        <div
+          class="card bg-base-100 shadow-sm border rounded-lg border-gray-200"
+        >
+          <div class="card-body">
+            <h2 class="card-title">
+              <span>96500</span> Taka is Donated
+              <span>flood at noakhali, bangladesh </span>
+            </h2>
+            <p>date: <span> random date comes here</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-      const availableBalance = document.getElementById("availableBalance");
-      console.log(availableBalance);
-      function donationClick(inputAmount, totalamount) {
-        if (parseFloat(availableBalance.innerHTML) >= inputAmount) {
-          if (!isNaN(inputAmount) && inputAmount > 0) {
-            totalamount = totalamount + inputAmount;
-            availableBalance.innerHTML = parseFloat(
-              availableBalance.innerHTML - inputAmount
-            );
-            return totalamount;
-          } else {
-            document.getElementById("my_modal_3").showModal();
-            return totalAmount;
-          }
-        } else {
-          alert("not enough balance");
-          return totalamount;
-        }
-      }
-      const cards = document.querySelectorAll(".card");
-      console.log(cards);
-
-      cards.forEach((card) => {
-        const donateButton = card.querySelector(".donate-btn");
-        const donationAmountInput = card.querySelector("input.input");
-        const donationTotalSpan = card.querySelector(".donationTotal");
-
-        donateButton.addEventListener("click", () => {
-          const total = donationClick(
-            parseFloat(donationAmountInput.value),
-            parseFloat(donationTotalSpan.innerHTML)
-          );
-          console.log(total);
-          console.log(donationTotalSpan);
-          donationTotalSpan.innerHTML = total;
-          donationAmountInput.value = " ";
-        });
-      });
-    </script>
+    <script src="/index.js"></script>
   </body>
 </html>
