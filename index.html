@@ -24,7 +24,8 @@
       </div>
       <div class="navbar-end mr-20">
         <a class="btn btn-disabled text-black">
-          <img src="./assets/coin.png" alt="" /> 5500 BDT</a
+          <img src="./assets/coin.png" alt="" />
+          <span id="availableBalance">5500</span> BDT</a
         >
       </div>
     </div>
@@ -35,7 +36,7 @@
         <a class="btn text-xl">History</a>
       </div>
     </section>
-    <!-- Donation Card Added -->
+    <!-- Donation Cards Added -->
     <section class="donationCards">
       <div class="w-[80%] m-auto flex flex-col space-y-6">
         <div class="card lg:card-side bg-base-100 border border-gray-200">
@@ -47,7 +48,8 @@
           <div class="card-body">
             <div>
               <a class="btn btn-disabled text-black">
-                <img src="./assets/coin.png" alt="" /> 5500 BDT</a
+                <img src="./assets/coin.png" alt="" />
+                <span class="donationTotal">0</span> BDT</a
               >
             </div>
             <h2 class="card-title text-2xl">
@@ -63,11 +65,11 @@
             </p>
 
             <input
-              type="text"
+              type="number"
               placeholder="Write Donation Amount"
               class="input w-full"
             />
-            <a class="btn bg-[#B4F461] text-lg font-bold text-black">
+            <a class="btn donate-btn bg-[#B4F461] text-lg font-bold text-black">
               Donate Now
             </a>
           </div>
@@ -81,7 +83,8 @@
           <div class="card-body">
             <div>
               <a class="btn btn-disabled text-black">
-                <img src="./assets/coin.png" alt="" /> 5500 BDT</a
+                <img src="./assets/coin.png" alt="" />
+                <span class="donationTotal">0</span> BDT</a
               >
             </div>
             <h2 class="card-title text-2xl">
@@ -99,11 +102,11 @@
             </p>
 
             <input
-              type="text"
+              type="number"
               placeholder="Write Donation Amount"
               class="input w-full"
             />
-            <a class="btn bg-[#B4F461] text-lg font-bold text-black">
+            <a class="btn donate-btn bg-[#B4F461] text-lg font-bold text-black">
               Donate Now
             </a>
           </div>
@@ -117,7 +120,8 @@
           <div class="card-body">
             <div>
               <a class="btn btn-disabled text-black">
-                <img src="./assets/coin.png" alt="" /> 5500 BDT</a
+                <img src="./assets/coin.png" alt="" />
+                <span class="donationTotal">0</span> BDT</a
               >
             </div>
             <h2 class="card-title text-2xl">
@@ -136,16 +140,73 @@
             </p>
 
             <input
-              type="text"
+              type="number"
               placeholder="Write Donation Amount"
               class="input w-full"
             />
-            <a class="btn bg-[#B4F461] text-lg font-bold text-black">
+            <a class="btn donate-btn bg-[#B4F461] text-lg font-bold text-black">
               Donate Now
             </a>
           </div>
         </div>
       </div>
     </section>
+
+    <dialog id="my_modal_3" class="modal">
+      <div class="modal-box">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+        <h3 class="font-bold text-4xl text-red-800 text-center">ERROR!</h3>
+        <p class="py-4 text-center">please enter a valid amount</p>
+      </div>
+    </dialog>
+    <!-- History Section -->
+    <section class="historyCards"></section>
+
+    <script>
+      const availableBalance = document.getElementById("availableBalance");
+      console.log(availableBalance);
+      function donationClick(inputAmount, totalamount) {
+        if (parseFloat(availableBalance.innerHTML) >= inputAmount) {
+          if (!isNaN(inputAmount) && inputAmount > 0) {
+            totalamount = totalamount + inputAmount;
+            availableBalance.innerHTML = parseFloat(
+              availableBalance.innerHTML - inputAmount
+            );
+            return totalamount;
+          } else {
+            document.getElementById("my_modal_3").showModal();
+            return totalAmount;
+          }
+        } else {
+          alert("not enough balance");
+          return totalamount;
+        }
+      }
+      const cards = document.querySelectorAll(".card");
+      console.log(cards);
+
+      cards.forEach((card) => {
+        const donateButton = card.querySelector(".donate-btn");
+        const donationAmountInput = card.querySelector("input.input");
+        const donationTotalSpan = card.querySelector(".donationTotal");
+
+        donateButton.addEventListener("click", () => {
+          const total = donationClick(
+            parseFloat(donationAmountInput.value),
+            parseFloat(donationTotalSpan.innerHTML)
+          );
+          console.log(total);
+          console.log(donationTotalSpan);
+          donationTotalSpan.innerHTML = total;
+          donationAmountInput.value = " ";
+        });
+      });
+    </script>
   </body>
 </html>
