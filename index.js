@@ -1,33 +1,47 @@
+// DOM elements
 const availableBalance = document.getElementById("availableBalance");
 const history = document.getElementById("historyCards");
-const currentDate = new Date().toLocaleString("en-GB");
 
-// function for balance and donation amount handelling
-
+// Handle donation logic and update balance
 function donationClick(inputAmount, totalamount) {
-  if (parseFloat(availableBalance.innerHTML) >= inputAmount) {
-    if (!isNaN(inputAmount) && inputAmount > 0) {
-      totalamount = totalamount + inputAmount;
-      availableBalance.innerHTML = parseFloat(
-        availableBalance.innerHTML - inputAmount
-      );
-
-      return totalamount;
-    } else {
-      document.getElementById("my_modal_3").showModal();
-      return totalAmount;
-    }
-  } else {
+  if (parseFloat(availableBalance.innerHTML) <= inputAmount) {
     alert("not enough balance");
     return totalamount;
   }
+
+  if (!isNaN(inputAmount) && inputAmount > 0) {
+    totalamount = totalamount + inputAmount;
+    availableBalance.innerHTML = parseFloat(
+      availableBalance.innerHTML - inputAmount
+    );
+    document.getElementById("my_modal_4").showModal();
+    return totalamount;
+  } else {
+    document.getElementById("my_modal_3").showModal();
+  }
 }
+// Navigation buttons
+const donationButton = document.getElementById("donationBtn");
+const historyButton = document.getElementById("historyBtn");
+console.log(historyButton);
 
-// donation cards and click handling
+historyButton.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevent <a> default behavior
+  document.getElementById("historySection").classList.remove("hidden");
+  document.getElementById("donationSection").classList.add("hidden");
+});
+donationButton.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevent <a> default behavior
+  document.getElementById("donationSection").classList.remove("hidden");
+  document.getElementById("historySection").classList.add("hidden");
+  console.log("clicked donation button");
+});
 
+// For each donation card, handle donate button click
 const cards = document.querySelectorAll(".card");
-
 cards.forEach((card) => {
+  const currentDate = new Date().toLocaleString("en-GB");
+
   const title = card.querySelector(".title");
   const donateButton = card.querySelector(".donate-btn");
   const donationAmountInput = card.querySelector("input.input");
@@ -38,20 +52,16 @@ cards.forEach((card) => {
       parseFloat(donationAmountInput.value),
       parseFloat(donationTotalSpan.innerHTML)
     );
+    // Add donation to history
     history.innerHTML += ` <div class="card bg-base-100  shadow-sm">
         <div class="card-body">
           <h2 class="card-title"><span>${donationAmountInput.value}</span> Taka is Donated <span>${title.innerHTML} </span></h2>
           <p>
             date: <span>${currentDate}</span>
           </p>
-        
         </div>
       </div>`;
-    console.log(title);
-    console.log(donationTotalSpan);
     donationTotalSpan.innerHTML = total;
-    donationAmountInput.value = " ";
+    donationAmountInput.value = "";
   });
 });
-
-// navigation button or toggle button

@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <!-- Navbar section -->
+    <!-- Navbar: Top navigation bar with logo, blog, and balance -->
     <div class="navbar bg-[#fbf8f8] h-24">
       <div class="navbar-start ml-20">
         <a class="btn bg-[#B4F461] text-xl">Blog</a>
@@ -29,16 +29,17 @@
         >
       </div>
     </div>
-    <!-- Navigation button added -->
+    <!-- Navigation buttons: Switch between Donation and History -->
     <section class="navigationButtons flex items-center justify-center my-16">
       <div class="flex gap-3">
-        <a class="btn bg-[#B4F461] text-xl">Donation</a>
-        <a class="btn text-xl">History</a>
+        <a id="donationBtn" class="btn bg-[#B4F461] text-xl">Donation</a>
+        <a id="historyBtn" class="btn text-xl">History</a>
       </div>
     </section>
-    <!-- Donation Cards Added -->
-    <section class="donationCards">
+    <!-- Donation Cards: Each card represents a cause you can donate to -->
+    <section id="donationSection">
       <div class="w-[80%] m-auto flex flex-col space-y-6">
+        <!-- Donation Card Start -->
         <div class="card lg:card-side bg-base-100 border border-gray-200">
           <div class="p-8">
             <figure class="rounded-lg w-full lg:w-100">
@@ -75,6 +76,8 @@
             </a>
           </div>
         </div>
+        <!-- Donation Card End -->
+        <!-- Donation Card Start -->
         <div class="card lg:card-side bg-base-100 border border-gray-200">
           <div class="p-8">
             <figure class="rounded-lg w-full lg:w-100">
@@ -113,6 +116,8 @@
             </a>
           </div>
         </div>
+        <!-- Donation Card End -->
+        <!-- Donation Card Start -->
         <div class="card lg:card-side bg-base-100 border border-gray-200">
           <div class="p-8">
             <figure class="rounded-lg w-full lg:w-100">
@@ -151,9 +156,10 @@
             </a>
           </div>
         </div>
+        <!-- Donation Card End -->
       </div>
     </section>
-    <!-- Modal for error -->
+    <!-- Modal: Shows error if invalid donation amount is entered -->
     <dialog id="my_modal_3" class="modal">
       <div class="modal-box">
         <form method="dialog">
@@ -167,23 +173,28 @@
         <p class="py-4 text-center">please enter a valid amount</p>
       </div>
     </dialog>
-    <!-- History Section -->
-    <section class="historyCards">
-      <div id="historyCards" class="w-[80%] mx-auto flex flex-col gap-6">
-        <div
-          class="card bg-base-100 shadow-sm border rounded-lg border-gray-200"
-        >
-          <div class="card-body">
-            <h2 class="card-title">
-              <span>96500</span> Taka is Donated
-              <span>flood at noakhali, bangladesh </span>
-            </h2>
-            <p>date: <span> random date comes here</span></p>
-          </div>
-        </div>
+    <!-- Modal: Shows error if invalid donation amount is entered -->
+    <dialog id="my_modal_4" class="modal">
+      <div class="modal-box">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+        <h3 class="font-bold text-4xl text-green-800 text-center">
+          CONGRATULATIONS!
+        </h3>
+        <p class="py-4 text-center">Donation successful</p>
       </div>
+    </dialog>
+    <!-- History Section: Shows list of past donations -->
+    <section id="historySection" class="hidden">
+      <div id="historyCards" class="w-[80%] mx-auto flex flex-col gap-6"></div>
     </section>
 
+    <!-- Main JavaScript file for handling donation logic -->
     <script src="/index.js"></script>
   </body>
 </html>
