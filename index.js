@@ -60,7 +60,16 @@ cards.forEach((card) => {
     if (isValid) {
       history.innerHTML += ` <div class="card bg-base-100  shadow-sm">
         <div class="card-body">
-          <h2 class="card-title"><span>${donationAmountInput.value}</span> Taka is Donated <span>${title.innerHTML} </span></h2>
+          <h2 class="card-title text-green-700"><span>${donationAmountInput.value}</span> Taka is Donated <span>${title.innerHTML} </span></h2>
+          <p>
+            date: <span>${currentDate}</span>
+          </p>
+        </div>
+      </div>`;
+    } else {
+      history.innerHTML += ` <div class="card bg-base-100  shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-red-700"><span></span> Donation failed  <span>${title.innerHTML} </span></h2>
           <p>
             date: <span>${currentDate}</span>
           </p>
