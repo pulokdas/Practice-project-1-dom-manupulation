@@ -173,7 +173,8 @@
         <p class="py-4 text-center">please enter a valid amount</p>
       </div>
     </dialog>
-    <!-- Modal: Shows error if invalid donation amount is entered -->
+    <!-- Modal: Shows success message after donation -->
+
     <dialog id="my_modal_4" class="modal">
       <div class="modal-box">
         <form method="dialog">
@@ -187,6 +188,22 @@
           CONGRATULATIONS!
         </h3>
         <p class="py-4 text-center">Donation successful</p>
+      </div>
+    </dialog>
+    <!-- Modal: Shows error if balance is not enough -->
+    <dialog id="my_modal_5" class="modal">
+      <div class="modal-box">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+        <h3 class="font-bold text-4xl text-yellow-600 text-center">sorry!</h3>
+        <p class="py-4 text-center">
+          There is no available Balance. Please top up.
+        </p>
       </div>
     </dialog>
     <!-- History Section: Shows list of past donations -->

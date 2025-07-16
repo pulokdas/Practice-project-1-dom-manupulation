@@ -5,7 +5,8 @@ const history = document.getElementById("historyCards");
 // Handle donation logic and update balance
 function donationClick(inputAmount, totalamount) {
   if (parseFloat(availableBalance.innerHTML) <= inputAmount) {
-    alert("not enough balance");
+    document.getElementById("my_modal_5").showModal();
+
     return totalamount;
   }
 
