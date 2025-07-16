@@ -33,12 +33,15 @@ historyButton.addEventListener("click", (e) => {
   e.preventDefault(); // Prevent <a> default behavior
   document.getElementById("historySection").classList.remove("hidden");
   document.getElementById("donationSection").classList.add("hidden");
+  donationButton.classList.remove("bg-[#B4F461]");
+  historyButton.classList.add("bg-[#B4F461]");
 });
 donationButton.addEventListener("click", (e) => {
   e.preventDefault(); // Prevent <a> default behavior
   document.getElementById("donationSection").classList.remove("hidden");
   document.getElementById("historySection").classList.add("hidden");
-  console.log("clicked donation button");
+  historyButton.classList.remove("bg-[#B4F461]");
+  donationButton.classList.add("bg-[#B4F461]");
 });
 
 // For each donation card, handle donate button click
