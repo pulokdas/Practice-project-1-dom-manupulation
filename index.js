@@ -1,11 +1,12 @@
 // DOM elements
 const availableBalance = document.getElementById("availableBalance");
 const history = document.getElementById("historyCards");
-
+let isValid = false;
 // Handle donation logic and update balance
 function donationClick(inputAmount, totalamount) {
   if (parseFloat(availableBalance.innerHTML) <= inputAmount) {
     document.getElementById("my_modal_5").showModal();
+    isValid = false;
 
     return totalamount;
   }
@@ -16,9 +17,11 @@ function donationClick(inputAmount, totalamount) {
       availableBalance.innerHTML - inputAmount
     );
     document.getElementById("my_modal_4").showModal();
+    isValid = true;
     return totalamount;
   } else {
     document.getElementById("my_modal_3").showModal();
+    isValid = false;
   }
 }
 // Navigation buttons
@@ -54,7 +57,8 @@ cards.forEach((card) => {
       parseFloat(donationTotalSpan.innerHTML)
     );
     // Add donation to history
-    history.innerHTML += ` <div class="card bg-base-100  shadow-sm">
+    if (isValid) {
+      history.innerHTML += ` <div class="card bg-base-100  shadow-sm">
         <div class="card-body">
           <h2 class="card-title"><span>${donationAmountInput.value}</span> Taka is Donated <span>${title.innerHTML} </span></h2>
           <p>
@@ -62,6 +66,7 @@ cards.forEach((card) => {
           </p>
         </div>
       </div>`;
+    }
     donationTotalSpan.innerHTML = total;
     donationAmountInput.value = "";
   });
